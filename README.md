@@ -3,7 +3,9 @@
 > a spike to attempt to port aurelia code into typescript
 
 [aurelia repo source code](https://github.com/cmichaelgraham/aurelia-ts-port/tree/master/aurelia-latest)
+
 [aurelia repo typescript-converted source code](https://github.com/cmichaelgraham/aurelia-ts-port/tree/master/aurelia-ts)
+
 [build output](https://github.com/cmichaelgraham/aurelia-ts-port/tree/master/aurelia-ts/output-gulp)
 
 ## clone and build
