@@ -1,4 +1,4 @@
-# [aurelia-ts-lib](https://github.com/cmichaelgraham/aurelia-ts-port)
+# [aurelia-ts-port](https://github.com/cmichaelgraham/aurelia-ts-port)
 
 > a spike to attempt to port aurelia code into typescript
 
