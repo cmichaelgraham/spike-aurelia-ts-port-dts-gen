@@ -1,11 +1,7 @@
 import { INVOKE_LIFECYCLE, REPLACE } from './navigation-plan';
 import { isNavigationCommand } from './navigation-commands';
 import { processPotential } from './util';
-export var affirmations = [
-    'yes',
-    'ok',
-    'true'
-];
+export var affirmations = ['yes', 'ok', 'true'];
 export class CanDeactivatePreviousStep {
     run(navigationContext, next) {
         return processDeactivatable(navigationContext.plan, 'canDeactivate', next);
@@ -58,7 +54,9 @@ function findDeactivatable(plan, callbackName, list) {
     for (var viewPortName in plan) {
         var viewPortPlan = plan[viewPortName];
         var prevComponent = viewPortPlan.prevComponent;
-        if ((viewPortPlan.strategy == INVOKE_LIFECYCLE || viewPortPlan.strategy == REPLACE) && prevComponent) {
+        if ((viewPortPlan.strategy == INVOKE_LIFECYCLE ||
+            viewPortPlan.strategy == REPLACE) &&
+            prevComponent) {
             var controller = prevComponent.executionContext;
             if (callbackName in controller) {
                 list.push(controller);

@@ -6,10 +6,7 @@ export class RouterConfiguration {
         this.pipelineSteps = [];
     }
     addPipelineStep(name, step) {
-        this.pipelineSteps.push({
-            name,
-            step
-        });
+        this.pipelineSteps.push({ name, step });
     }
     map(route, config) {
         if (Array.isArray(route)) {
@@ -23,9 +20,7 @@ export class RouterConfiguration {
                 config = {};
             }
             else if (typeof config == 'string') {
-                config = {
-                    moduleId: config
-                };
+                config = { moduleId: config };
             }
             config.route = route;
         }

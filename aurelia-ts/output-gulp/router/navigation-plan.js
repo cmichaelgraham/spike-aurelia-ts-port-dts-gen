@@ -25,7 +25,8 @@ export function buildNavigationPlan(navigationContext, forceLifecycleMinimum) {
             }
             else if ('determineActivationStrategy' in prevViewPortInstruction.component.executionContext) {
                 //TODO: should we tell them if the parent had a lifecycle min change?
-                viewPortPlan.strategy = prevViewPortInstruction.component.executionContext.determineActivationStrategy(...next.lifecycleArgs);
+                viewPortPlan.strategy = prevViewPortInstruction.component.executionContext
+                    .determineActivationStrategy(...next.lifecycleArgs);
             }
             else if (newParams || forceLifecycleMinimum) {
                 viewPortPlan.strategy = INVOKE_LIFECYCLE;
@@ -35,9 +36,12 @@ export function buildNavigationPlan(navigationContext, forceLifecycleMinimum) {
             }
             if (viewPortPlan.strategy !== REPLACE && prevViewPortInstruction.childRouter) {
                 var path = next.getWildcardPath();
-                var task = prevViewPortInstruction.childRouter.createNavigationInstruction(path, next).then(childInstruction => {
-                    viewPortPlan.childNavigationContext = prevViewPortInstruction.childRouter.createNavigationContext(childInstruction);
-                    return buildNavigationPlan(viewPortPlan.childNavigationContext, viewPortPlan.strategy == INVOKE_LIFECYCLE).then(childPlan => {
+                var task = prevViewPortInstruction.childRouter
+                    .createNavigationInstruction(path, next).then(childInstruction => {
+                    viewPortPlan.childNavigationContext = prevViewPortInstruction.childRouter
+                        .createNavigationContext(childInstruction);
+                    return buildNavigationPlan(viewPortPlan.childNavigationContext, viewPortPlan.strategy == INVOKE_LIFECYCLE)
+                        .then(childPlan => {
                         viewPortPlan.childNavigationContext.plan = childPlan;
                     });
                 });
@@ -62,7 +66,8 @@ export class BuildNavigationPlanStep {
         if (navigationContext.nextInstruction.config.redirect) {
             return next.cancel(new Redirect(navigationContext.nextInstruction.config.redirect));
         }
-        return buildNavigationPlan(navigationContext).then(plan => {
+        return buildNavigationPlan(navigationContext)
+            .then(plan => {
             navigationContext.plan = plan;
             return next();
         }).catch(next.cancel);

@@ -41,10 +41,7 @@ export class NavigationContext {
             }
             if (viewPortInstruction.strategy === REPLACE) {
                 if (waitToSwap) {
-                    delaySwaps.push({
-                        viewPort,
-                        viewPortInstruction
-                    });
+                    delaySwaps.push({ viewPort, viewPortInstruction });
                 }
                 loads.push(viewPort.process(viewPortInstruction, waitToSwap).then(x => {
                     if ('childNavigationContext' in viewPortInstruction) {

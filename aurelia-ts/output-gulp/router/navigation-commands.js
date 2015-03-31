@@ -35,9 +35,6 @@ export class Redirect {
     * @param {Router} appRouter - a router which should redirect
     */
     navigate(appRouter) {
-        (this.router || appRouter).navigate(this.url, {
-            trigger: true,
-            replace: true
-        });
+        (this.router || appRouter).navigate(this.url, { trigger: true, replace: true });
     }
 }

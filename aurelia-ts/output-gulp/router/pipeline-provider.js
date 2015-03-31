@@ -22,11 +22,7 @@ export class PipelineProvider {
             CommitChangesStep
         ];
     }
-    static inject() {
-        return [
-            Container
-        ];
-    }
+    static inject() { return [Container]; }
     createPipeline(navigationContext) {
         var pipeline = new Pipeline();
         this.steps.forEach(step => pipeline.withStep(this.container.get(step)));

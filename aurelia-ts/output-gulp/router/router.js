@@ -89,8 +89,7 @@ export class Router {
             queryString = url.substr(queryIndex + 1);
         }
         if ((!results || !results.length) && this.catchAllHandler) {
-            results = [
-                {
+            results = [{
                     config: {
                         navModel: {}
                     },
@@ -98,8 +97,7 @@ export class Router {
                     params: {
                         path: fragment
                     }
-                }
-            ];
+                }];
         }
         if (results && results.length) {
             var first = results[0], fragment = url, queryIndex = fragment.indexOf('?'), queryString;
@@ -155,12 +153,7 @@ export class Router {
         navModel.title = navModel.title || config.title;
         navModel.settings = config.settings || (config.settings = {});
         this.routes.push(config);
-        this.recognizer.add([
-            {
-                path: config.route,
-                handler: config
-            }
-        ]);
+        this.recognizer.add([{ path: config.route, handler: config }]);
         if (config.route) {
             var withChild, settings = config.settings;
             delete config.settings;
@@ -168,12 +161,10 @@ export class Router {
             config.settings = settings;
             withChild.route += "/*childRoute";
             withChild.hasChildRouter = true;
-            this.childRecognizer.add([
-                {
+            this.childRecognizer.add([{
                     path: withChild.route,
                     handler: withChild
-                }
-            ]);
+                }]);
             withChild.navModel = navModel;
             withChild.settings = config.settings;
         }

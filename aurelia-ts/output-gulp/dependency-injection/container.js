@@ -43,9 +43,7 @@ export class Container {
             return;
         }
         var original = this["locateParameterInfoElsewhere"];
-        this["locateParameterInfoElsewhere"] = (fn) => {
-            return original(fn) || locator(fn);
-        };
+        this["locateParameterInfoElsewhere"] = (fn) => { return original(fn) || locator(fn); };
     }
     /**
     * Registers an existing object instance with the container.
@@ -193,7 +191,8 @@ export class Container {
         if (key === null || key === undefined) {
             throw new Error('key cannot be null or undefined.');
         }
-        return this.entries.has(key) || (checkParent && this.parent && this.parent.hasHandler(key, checkParent));
+        return this.entries.has(key)
+            || (checkParent && this.parent && this.parent.hasHandler(key, checkParent));
     }
     /**
     * Creates a new dependency injection container whose parent is the current container.
@@ -261,10 +260,7 @@ export class Container {
         return info;
     }
     createConstructionInfo(fn) {
-        var info = {
-            isClass: isClass(fn),
-            keys: null
-        };
+        var info = { isClass: isClass(fn), keys: null };
         if (fn.inject !== undefined) {
             if (typeof fn.inject === 'function') {
                 info.keys = fn.inject();

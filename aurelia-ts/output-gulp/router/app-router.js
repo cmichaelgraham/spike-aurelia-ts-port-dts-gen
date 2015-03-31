@@ -11,19 +11,14 @@ export class AppRouter extends Router {
         document.addEventListener('click', handleLinkClick.bind(this), true);
         this.events = events;
     }
-    static inject() {
-        return [
-            Container,
-            History,
-            PipelineProvider,
-            EventAggregator
-        ];
-    }
+    static inject() { return [Container, History, PipelineProvider, EventAggregator]; }
     get isRoot() {
         return true;
     }
     loadUrl(url) {
-        return this.createNavigationInstruction(url).then(instruction => this.queueInstruction(instruction)).catch(error => {
+        return this.createNavigationInstruction(url).
+            then(instruction => this.queueInstruction(instruction)).
+            catch(error => {
             console.error(error);
             if (this.history.previousFragment) {
                 this.navigate(this.history.previousFragment, false);
@@ -57,10 +52,7 @@ export class AppRouter extends Router {
             }
             if (result.output instanceof Error) {
                 console.error(result.output);
-                this.events.publish('router:navigation:error', {
-                    instruction,
-                    result
-                });
+                this.events.publish('router:navigation:error', { instruction, result });
             }
             if (isNavigationCommand(result.output)) {
                 result.output.navigate(this);
@@ -71,7 +63,9 @@ export class AppRouter extends Router {
             }
             instruction.resolve(result);
             this.dequeueInstruction();
-        }).then(result => this.events.publish('router:navigation:complete', instruction)).catch(error => {
+        })
+            .then(result => this.events.publish('router:navigation:complete', instruction))
+            .catch(error => {
             console.error(error);
         });
     }
@@ -95,9 +89,7 @@ export class AppRouter extends Router {
             return;
         }
         this.isActive = true;
-        this.options = Object["assign"]({
-            routeHandler: this.loadUrl.bind(this)
-        }, this.options, options);
+        this.options = Object["assign"]({ routeHandler: this.loadUrl.bind(this) }, this.options, options);
         this.history.activate(this.options);
         this.dequeueInstruction();
     }
@@ -140,5 +132,8 @@ function handleLinkClick(evt) {
 }
 function targetIsThisWindow(target) {
     var targetWindow = target.getAttribute('target');
-    return !targetWindow || targetWindow === window.name || targetWindow === '_self' || (targetWindow === 'top' && window === window.top);
+    return !targetWindow ||
+        targetWindow === window.name ||
+        targetWindow === '_self' ||
+        (targetWindow === 'top' && window === window.top);
 }

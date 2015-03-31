@@ -90,9 +90,7 @@ MetadataStorage.empty = Object.freeze(new MetadataStorage());
 function normalize(metadata, fn, replace) {
     if (metadata instanceof MetadataStorage) {
         if (replace) {
-            fn.metadata = function () {
-                return metadata;
-            };
+            fn.metadata = function () { return metadata; };
         }
         metadata.owner = fn;
         return metadata;
@@ -164,9 +162,7 @@ export var Metadata = {
         * @param {String} staticPropertyName The name of the property on the function instance to search for metadata.
         */
         location(staticPropertyName) {
-            this.locator(function (fn) {
-                return fn[staticPropertyName];
-            });
+            this.locator(function (fn) { return fn[staticPropertyName]; });
         },
         /**
         * Adds a function capable of locating metadata.
@@ -180,9 +176,7 @@ export var Metadata = {
                 return;
             }
             var original = locateFunctionMetadataElsewhere;
-            locateFunctionMetadataElsewhere = function (fn) {
-                return original(fn) || loc(fn);
-            };
+            locateFunctionMetadataElsewhere = function (fn) { return original(fn) || loc(fn); };
         },
         classHelper(name, fn) {
             MetadataStorage.prototype[name] = function () {

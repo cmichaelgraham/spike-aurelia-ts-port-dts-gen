@@ -5,11 +5,7 @@ export class RouteFilterContainer {
         this.filters = {};
         this.filterCache = {};
     }
-    static inject() {
-        return [
-            Container
-        ];
-    }
+    static inject() { return [Container]; }
     addStep(name, step, index = -1) {
         var filter = this.filters[name];
         if (!filter) {
@@ -47,9 +43,7 @@ export function createRouteFilterStep(name) {
     }
     ;
     create["inject"] = function () {
-        return [
-            RouteFilterContainer
-        ];
+        return [RouteFilterContainer];
     };
     return create;
 }

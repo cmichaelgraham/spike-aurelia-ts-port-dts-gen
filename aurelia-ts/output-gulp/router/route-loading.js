@@ -8,13 +8,11 @@ export class LoadRouteStep {
     constructor(routeLoader) {
         this.routeLoader = routeLoader;
     }
-    static inject() {
-        return [
-            RouteLoader
-        ];
-    }
+    static inject() { return [RouteLoader]; }
     run(navigationContext, next) {
-        return loadNewRoute([], this.routeLoader, navigationContext).then(next).catch(next.cancel);
+        return loadNewRoute([], this.routeLoader, navigationContext)
+            .then(next)
+            .catch(next.cancel);
     }
 }
 export function loadNewRoute(routers, routeLoader, navigationContext) {
@@ -56,9 +54,12 @@ function loadRoute(routers, routeLoader, navigationContext, viewPortPlan) {
         var controller = component.executionContext;
         if (controller.router && controller.router.isConfigured && routers.indexOf(controller.router) === -1) {
             var path = next.getWildcardPath();
-            return controller.router.createNavigationInstruction(path, next).then(childInstruction => {
-                viewPortPlan.childNavigationContext = controller.router.createNavigationContext(childInstruction);
-                return buildNavigationPlan(viewPortPlan.childNavigationContext).then(childPlan => {
+            return controller.router.createNavigationInstruction(path, next)
+                .then(childInstruction => {
+                viewPortPlan.childNavigationContext = controller.router
+                    .createNavigationContext(childInstruction);
+                return buildNavigationPlan(viewPortPlan.childNavigationContext)
+                    .then(childPlan => {
                     viewPortPlan.childNavigationContext.plan = childPlan;
                     viewPortInstruction.childNavigationContext = viewPortPlan.childNavigationContext;
                     return loadNewRoute(routers, routeLoader, viewPortPlan.childNavigationContext);

@@ -47,8 +47,7 @@ class JSONPXHR {
             this["onabort"](new Error('abort'));
         }
     }
-    setRequestHeader() {
-    }
+    setRequestHeader() { }
 }
 export function createJSONPRequestMessageProcessor() {
     return new RequestMessageProcessor(JSONPXHR, [

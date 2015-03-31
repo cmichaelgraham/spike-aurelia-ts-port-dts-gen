@@ -55,10 +55,7 @@ function addRoute(routeArray, path, handler) {
         len += routeArray[i].path.length;
     }
     path = path.substr(len);
-    var route = {
-        path: path,
-        handler: handler
-    };
+    var route = { path: path, handler: handler };
     routeArray.push(route);
 }
 function eachRoute(baseRoute, matcher, callback, binding) {

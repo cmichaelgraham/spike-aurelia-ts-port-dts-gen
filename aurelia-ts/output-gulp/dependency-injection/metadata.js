@@ -226,7 +226,9 @@ export class Parent extends Resolver {
     * @return {Function} Returns the matching instance from the parent container
     */
     get(container) {
-        return container.parent ? container.parent.get(this.key) : null;
+        return container.parent
+            ? container.parent.get(this.key)
+            : null;
     }
     /**
     * Creates a Parent Resolver for the supplied key.

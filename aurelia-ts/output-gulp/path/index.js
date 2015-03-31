@@ -46,7 +46,8 @@ export function join(path1, path2) {
     if (!path2) {
         return path1;
     }
-    urlPrefix = path1.indexOf('//') === 0 ? '//' : path1.indexOf('/') === 0 ? '/' : '';
+    urlPrefix = path1.indexOf('//') === 0 ? '//' :
+        path1.indexOf('/') === 0 ? '/' : '';
     url1 = path1.split('/');
     url2 = path2.split('/');
     url3 = [];
@@ -84,7 +85,9 @@ function type(obj) {
         return obj + "";
     }
     // Support: Android<4.0 (functionish RegExp)
-    return typeof obj === 'object' || typeof obj === 'function' ? class2type[toString.call(obj)] || 'object' : typeof obj;
+    return typeof obj === 'object' || typeof obj === 'function'
+        ? class2type[toString.call(obj)] || 'object'
+        : typeof obj;
 }
 export function buildQueryString(a, traditional) {
     var prefix, s = [], add = function (key, value) {
