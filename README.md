@@ -1,11 +1,14 @@
-# aurelia-ts-lib
+# [aurelia-ts-lib](https://github.com/cmichaelgraham/aurelia-ts-port)
 
 > a spike to attempt to port aurelia code into typescript
 
+The process is to take the ES6 Aurelia source code, maintain a local copy here for comparison when porting across new code changes:
 [aurelia repo source code](https://github.com/cmichaelgraham/aurelia-ts-port/tree/master/aurelia-latest)
 
+Using the source from above, the next step in the process is to create equivalent, matching typescript source code by copying `.js` files and renaming them `.ts` extension, making small edits to make the typescript compiler happy, and as an added bonus, adding typescript type annotations for the public api:
 [aurelia repo typescript-converted source code](https://github.com/cmichaelgraham/aurelia-ts-port/tree/master/aurelia-ts)
 
+The (gulp-based) build process then compiles the typescript aurelia source code, creating the `.d.ts` files that consist of only the type definitions.  In addition, the `.js` files in ES6 format are created also.  These files can hopefully be used by `babel compiler` to produce ES6 modules in `register` format.
 [build output](https://github.com/cmichaelgraham/aurelia-ts-port/tree/master/aurelia-ts/output-gulp)
 
 ## clone and build
