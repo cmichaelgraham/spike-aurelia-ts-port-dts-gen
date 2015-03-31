@@ -14,11 +14,9 @@
 2. run `git bash` shell, change to the main folder
 3. change to `aurelia-ts` folder
 4. run `npm install`
-5. change to `node_modules` folder
-6. run `git clone https://github.com/microsoft/typescript.git`
-7. change to `typescript` folder
+5. change to `node_modules/typescript` folder
 8. run `npm install`
-9. run `npm install -g jake`
+9. run `npm install -g jake` (if you haven't already)
 10. run `jake local`
 11. run `jake LKG`
 12. change back to `aurelia-ts` folder
